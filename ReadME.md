@@ -3,5 +3,5 @@
 3. Создана модель Wonder (Чудеса света) c 5 полями: 'title', 'creator', 'created', 'place', 'current_status'.
 4. Создан кастомный сериализатор, наследуемый от класса Serializer, модуля serializers. Соедржит методы create и update.
 5. Класс представления модуля View включает методы get, post, put, delete для соответсвующих http-методов.
-6. get/post доступны по url api/wonders/. А put/delete требуют передачи ключа записи - api/wonders/<int>
+6. get/post доступны по url api/wonders/. А put/delete требуют передачи ключа записи - api/wonders/int
 7. Реализован поиск по произвольному полю: api/wonders/<field>/?q=tower в классе SearchView.
