@@ -4,6 +4,11 @@ from rest_framework.renderers import JSONRenderer
 from .models import *
 
 
+class WonderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Wonder
+        fields = '__all__'
+
 class WonderSerializerCustom(serializers.Serializer):
     CHOICES = ['Exists', 'Destroyed']
     title = serializers.CharField(max_length=25)

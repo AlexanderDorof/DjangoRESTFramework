@@ -1,13 +1,44 @@
+from django.contrib.auth.models import User
 from django.shortcuts import render
 from django.http import HttpResponse
-from rest_framework import generics
+from rest_framework import generics, viewsets
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import *
 from .serializers import *
 
+# POST method create record in db
+class WonderCreate(generics.CreateAPIView):
+    queryset = Wonder.objects.all()
+    serializer_class = WonderSerializer
+# GET method - returns all records
+class WonderList(generics.ListAPIView):
+    queryset = Wonder.objects.all()
+    serializer_class = WonderSerializer
+    permission_classes = (IsAuthenticated, )
+
+# GET method - returns some records
+class WonderRetrieve(generics.RetrieveAPIView):
+    queryset = Wonder.objects.all()
+    serializer_class = WonderSerializer
+# DELETE method - del all records in queryset
+class WonderDestroy(generics.DestroyAPIView):
+    queryset = Wonder.objects.all()
+    serializer_class = WonderSerializer
+# PUT or PATCH method - change data in db
+class WonderUpdate(generics.UpdateAPIView):
+    queryset = Wonder.objects.all()
+    serializer_class = WonderSerializer
+
+#  Viewset includes all CRUD method
+class WonderViewSet(viewsets.ModelViewSet):
+    queryset = Wonder.objects.all()
+    serializer_class = WonderSerializer
 
 def index(request):
+    x = User.objects.all()
+    print(x)
     return HttpResponse('<h1>Hello Rest Api</h1>')
 
 
