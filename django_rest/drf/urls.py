@@ -1,6 +1,7 @@
 from django.urls import path, include
 from .views import *
 from rest_framework import routers
+from django.views.decorators.cache import cache_page
 
 router = routers.SimpleRouter()
 router.register(r'routers', WonderViewSet)
@@ -10,7 +11,7 @@ urlpatterns = [
     path('wonders/', WonderAPIView.as_view()),
     path('search/<slug:field_slug>/', SearchView.as_view()),
     path('wonders/<int:pk>/', WonderAPIView.as_view()),
-    path('wonders/wonderlist/', WonderList.as_view()),  # generics
+    path('wonders/wonderlist/', cache_page(60)(WonderList.as_view())),  # generics
     path('wonders/wondercreate/', WonderCreate.as_view()),
     path('wonders/wonderretrieve/<int:pk>/', WonderRetrieve.as_view()),
     path('wonders/wonderdestroy/<int:pk>/', WonderDestroy.as_view()),
