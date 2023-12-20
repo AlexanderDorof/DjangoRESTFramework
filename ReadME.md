@@ -5,3 +5,8 @@
 5. Класс представления модуля View включает методы get, post, put, delete для соответсвующих http-методов.
 6. get/post доступны по url api/wonders/. А put/delete требуют передачи ключа записи - api/wonders/<strong>int</strong>
 7. Реализован поиск по произвольному полю: api/wonders/<strong>field</strong>/?q=tower в классе SearchView.
+
+Обновление 20 декабря
+1. Добавлен Debug toolbar
+2. Добавлен функция cache_page для классового представления WonderList
+3. Добавлен Swagger
